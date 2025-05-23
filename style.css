@@ -34,19 +34,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  border: 2px solid;
+  border: 2px solid #f00;
   border-radius: 4px;
   transition: transform 0.2s ease;
 }
 
-
-img.green {
-  border-color: #0f0;
+.clicked {
+  border-color: #0f0 !important;
 }
 
-img.red {
-  border-color: #f00;
-}
+
 
 
 
