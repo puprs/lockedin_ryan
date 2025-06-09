@@ -171,11 +171,30 @@
     </div>
     </div>
     <script>
-  document.querySelectorAll('.image-wrapper > img').forEach(img => {
-    img.addEventListener('click', () => {
-      img.classList.toggle('clicked');
-    });
-  });
-</script>
+      const CLICKED_KEY = "<style>ClickedItems";
+
+      const clickedItems = JSON.parse(localStorage.getItem(CLICKED_KEY)) || [];
+
+      document.querySelectorAll(".image-wrapper > img").forEach((img) => {
+        const src = img.getAttribute("src");
+
+        if (clickedItems.includes(src)) {
+          img.classList.add("clicked");
+        }
+
+        img.addEventListener("click", () => {
+          img.classList.toggle("clicked");
+
+          const index = clickedItems.indexOf(src);
+          if (img.classList.contains("clicked")) {
+            if (index === -1) clickedItems.push(src);
+          } else {
+            if (index > -1) clickedItems.splice(index, 1);
+          }
+
+          localStorage.setItem(CLICKED_KEY, JSON.stringify(clickedItems));
+        });
+      });
+    </script>
 </body>
 </html>
